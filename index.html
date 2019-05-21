@@ -1,0 +1,67 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>License me maybe...</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script type="text/javascript" src="vue.min.js"></script>
+
+  <link rel="stylesheet" href="semantic.min.css">
+
+  <style id="compiled-css" type="text/css">
+      body {
+        background: #20262E;
+        padding: 20px;
+        font-family: Helvetica;
+      }
+
+      #app {
+        background: #fff;
+        border-radius: 4px;
+        padding: 20px;
+        transition: all 0.2s;
+      }
+
+      li {
+        margin: 8px 0;
+      }
+
+      h2 {
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      del {
+        color: rgba(0, 0, 0, 0.3);
+      }
+  </style>
+
+</head>
+<body>
+  <div id="app" class="ui two column grid">
+    <div class="column">
+      <h2>Unlicensed:</h2>
+      <ol>
+        <li is="repo-list-item"
+            v-for="repo in unlicensed"
+            v-bind:repo="repo"
+            v-bind:key="repo.node_id"></li>
+      </ol>
+    </div>
+      <div class="column">
+      <h2>Licensed:</h2>
+      <ol>
+        <li is="repo-list-item"
+            v-for="repo in licensed"
+            v-bind:repo="repo"
+            v-bind:key="repo.node_id"></li>
+      </ol>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
