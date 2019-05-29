@@ -1,5 +1,3 @@
-const ORG_URL = 'wileylabs-org.json';
-
 Vue.component('oss-license', {
   props: {
     "name": String,
@@ -54,6 +52,9 @@ Vue.component('repo-list-item', {
 new Vue({
   el: "#app",
   computed: {
+    org_url() {
+      return `https://api.github.com/users/${this.org_login}`;
+    },
     licensed() {
       return this.repos.filter((repo) => repo.license);
     },
@@ -62,19 +63,27 @@ new Vue({
     }
   },
   created() {
-    fetch(ORG_URL).then(r => r.json()).then(org => {
-      this.org = org;
-      return org.repos_url;
-    }).then(url => {
-      fetch(url).then(r => r.json()).then(repos => {
-        this.repos = repos;
-      });
-    });
+    this.getOrg();
   },
   data() {
     return {
+      org_login: 'WileyLabs',
       org: {},
       repos: []
     };
+  },
+  methods: {
+    getOrg() {
+      fetch(this.org_url)
+        .then(r => r.json())
+        .then(org => {
+          this.org = org;
+          return org.repos_url;
+        }).then(url => {
+          fetch(url).then(r => r.json()).then(repos => {
+            this.repos = repos;
+          });
+        }).catch();
+    }
   }
 });

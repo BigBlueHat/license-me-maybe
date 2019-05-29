@@ -42,7 +42,10 @@
 </head>
 <body>
   <div id="app">
-    <h1 class="ui page header">{{ org.name }}</h1>
+    <div class="ui header input">
+      <input type="text" v-model="org_login"
+             v-on:keyup.enter="getOrg">
+    </div>
     <div class="ui two column grid">
       <div class="column">
         <h2>Unlicensed:</h2>
