@@ -56,10 +56,16 @@ new Vue({
       return `https://api.github.com/users/${this.org_login}`;
     },
     licensed() {
-      return this.repos.filter((repo) => repo.license);
+      return this[this.focus].filter((repo) => repo.license);
     },
     unlicensed() {
-      return this.repos.filter((repo) => !repo.license);
+      return this[this.focus].filter((repo) => !repo.license);
+    },
+    forks() {
+      return this.repos.filter((repo) => repo.fork);
+    },
+    sources() {
+      return this.repos.filter((repo) => !repo.fork);
     }
   },
   created() {
@@ -69,7 +75,8 @@ new Vue({
     return {
       org_login: 'WileyLabs',
       org: {},
-      repos: []
+      repos: [],
+      focus: 'repos'
     };
   },
   methods: {

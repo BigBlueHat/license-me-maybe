@@ -42,20 +42,39 @@
 </head>
 <body>
   <div id="app">
-    <div class="ui three column grid">
-      <div class="column">
+    <div class="ui column grid">
+      <div class="four wide column">
         <div class="ui header input">
           <input type="text" v-model="org_login"
                  v-on:keyup.enter="getOrg">
         </div>
       </div>
-      <div class="column">
-        <div class="ui horizontal statistic">
-          <div class="value">{{ org.public_repos }}</div>
-          <div class="label">public repos</div>
+      <div class="ten wide column">
+        <div class="ui buttons">
+          <div class="ui toggle button" v-bind:class="{active: focus === 'repos'}"
+              v-on:click="focus = 'repos'">
+            <div class="ui horizontal statistic">
+              <div class="value">{{ org.public_repos }}</div>
+              <div class="label">public repos</div>
+            </div>
+          </div>
+          <div class="ui toggle button" v-bind:class="{active: focus === 'sources'}"
+              v-on:click="focus = 'sources'">
+            <div class="ui horizontal statistic">
+              <div class="value">{{ sources.length }}</div>
+              <div class="label">originals</div>
+            </div>
+          </div>
+          <div class="ui toggle button" v-bind:class="{active: focus === 'forks'}"
+              v-on:click="focus = 'forks'">
+            <div class="ui horizontal statistic">
+              <div class="value">{{ forks.length }}</div>
+              <div class="label">forks</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="column">
+      <div class="two wide column">
         <a class="ui blue right ribbon label" href="https://github.com/wileylabs/license-me-maybe">fork this at WileyLabs</a>
       </div>
     </div>
