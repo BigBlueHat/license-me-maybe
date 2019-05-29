@@ -1,4 +1,4 @@
-const REPO_DATA_URL = 'wileylabs.json';
+const ORG_URL = 'wileylabs-org.json';
 
 Vue.component('oss-license', {
   props: {
@@ -62,11 +62,19 @@ new Vue({
     }
   },
   created() {
-    fetch(REPO_DATA_URL).then(r => r.json()).then(repos => {
-      this.repos = repos;
+    fetch(ORG_URL).then(r => r.json()).then(org => {
+      this.org = org;
+      return org.repos_url;
+    }).then(url => {
+      fetch(url).then(r => r.json()).then(repos => {
+        this.repos = repos;
+      });
     });
   },
   data() {
-    return {repos: []};
+    return {
+      org: {},
+      repos: []
+    };
   }
 });
