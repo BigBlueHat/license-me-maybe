@@ -85,7 +85,7 @@ new Vue({
         .then(r => r.json())
         .then(org => {
           this.org = org;
-          return org.repos_url;
+          return org.repos_url + '?per_page=100';
         }).then(url => {
           fetch(url).then(r => r.json()).then(repos => {
             this.repos = repos;
