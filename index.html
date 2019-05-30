@@ -1,10 +1,9 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
   <title>License me maybe...</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script type="text/javascript" src="vue.min.js"></script>
@@ -42,7 +41,7 @@
 </head>
 <body>
   <div id="app">
-    <div class="ui column grid">
+    <div class="ui stackable grid">
       <div class="four wide column">
         <div class="ui header input">
           <input type="text" v-model="org_login"
@@ -50,7 +49,7 @@
         </div>
       </div>
       <div class="ten wide column">
-        <div class="ui buttons">
+        <div class="ui stackable buttons">
           <div class="ui toggle button" v-bind:class="{active: focus === 'repos'}"
               v-on:click="focus = 'repos'">
             <div class="ui horizontal statistic">
@@ -78,7 +77,7 @@
         <a class="ui blue right ribbon label" href="https://github.com/wileylabs/license-me-maybe">fork this at WileyLabs</a>
       </div>
     </div>
-    <div class="ui two column grid">
+    <div class="ui two column stackable grid">
       <div class="column">
         <h2>Unlicensed:</h2>
         <ol>
