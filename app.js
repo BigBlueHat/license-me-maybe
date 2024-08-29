@@ -48,6 +48,25 @@ Vue.component('repo-list-item', {
   </li>`
 });
 
+Vue.component('download-csv-button', {
+  props: ['list'],
+  data() {
+    return {};
+  },
+  computed: {
+    csv() {
+      const headers = `"Repo","License Name","SPDX","Created At","Updated At"\n`;
+      const items = this.list
+        .map((item) =>
+          `"${item.name}","${item.license.name.replaceAll('"', '""')}","${item.license.spdx_id}","${item.created_at}","${item.updated_at}"`);
+      return `data:text/csv,${encodeURIComponent(headers)}${encodeURIComponent(items.join('\n'))}`;
+    }
+  },
+  template: `
+  <a class="ui labeled icon button" v-bind:href="csv">
+    <i class="download cloud icon"></i> Download CSV</a>
+  `
+});
 
 new Vue({
   el: "#app",
