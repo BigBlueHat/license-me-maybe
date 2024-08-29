@@ -23,6 +23,7 @@
         <div class="ui header input">
           <input type="text" v-model="org_login"
                  v-on:keyup.enter="getOrg">
+          <img v-if="org" v-bind:src="org.avatar_url">
         </div>
       </div>
       <div class="ten wide column">
